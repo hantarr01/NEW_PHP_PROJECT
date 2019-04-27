@@ -1,27 +1,19 @@
-<?php
-/**
- * The header for our theme
- *
- * This is the template that displays all of the <head> section and everything up until <div id="content">
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package Test
- */
-
-?>
-<!doctype html>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
 
-	<?php wp_head(); ?>
+<?php wp_head(); ?>
 </head>
+
+<body <?php body_class(); ?>>
+<div id="page" class="site page">
 
 <header>
  	<nav>
+ 	<?php if (is_front_page() && is_home()){ ?>
  		<div class="nav-wrapper">
  			<a href="#" data-target="mobile-demo" class="sidenav-trigger" id="menu2"><i class="material-icons">menu</i></a>
  				<ul class="right hide-on-med-and-down">
@@ -67,9 +59,18 @@
  										<div class="bord-bott"></div>
  												<!-- border -->
 
- 						<div id="logo">
- 							<img src="<?= bloginfo('template_directory'); ?>/image/logo.png"></img>
- 						</div>
+ 						<div id="logo">							
+ 					<?php if (ot_get_option( 'logo_upload' )) { ?>
+ 						<img src="<?php echo ot_get_option( 'logo_upload' ); ?>"></img>
+ 					<?php } else { ?>
+ 						<h1><?php bloginfo('name'); ?></h1>
+            		<?php } ?>
+            			</div>
+
+					<?php if (ot_get_option('desc_on_off') != 'off') {?>
+						<p><?php bloginfo('description'); ?></p>
+            		<?php } ?>
+
 
  						<div class="alltab">
  							<div class="intab1">
@@ -114,6 +115,15 @@
  									<img src="<?= bloginfo('template_directory'); ?>/image/phone.png"">
  								</div>
 
+
+ 								 <?php if (ot_get_option( 'contact_phone' )) { ?>
+
+         						 	<p href="tel:<?php echo str_replace(array(" ", ")", "(", "-"), "", ot_get_option( 'contact_phone' ))?>" class="fa-phone">
+
+         						 <?php echo ot_get_option( 'contact_phone' ); ?></p>
+
+          						<?php } ?>
+
  								<div class="number">
  									+123 456 7890
  								</div>
@@ -151,7 +161,11 @@
  			</li>
 
  			<li class="logoMobile">
- 				<img src="<?= bloginfo('template_directory'); ?>/image/logo.png"></img>
+ 					<?php if (ot_get_option( 'logo_upload' )) { ?>
+ 						<img src="<?php echo ot_get_option( 'logo_upload' ); ?>"></img>
+ 					<?php } else { ?>
+ 						<h1><?php bloginfo('name'); ?></h1>
+            		<?php } ?>
  			</li>
 
  			<li>

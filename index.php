@@ -7,12 +7,11 @@
  * It is used to display a page when nothing more specific matches a query.
  * E.g., it puts together the home page when no home.php file exists.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Test
+ * @package Business
  */
- get_header(); ?>
-
+?>
 
 <div id="mainbanner">
 	<div class="slider">
@@ -170,3 +169,4 @@
 </div>
 <?php
 get_footer();?>
+
